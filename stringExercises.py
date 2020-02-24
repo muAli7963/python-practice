@@ -233,3 +233,121 @@ print(make_anagram(str1, str2))
 
 
 
+# measure total length of list of strings
+
+def total_length(list_of_strings):
+    total = 0
+    for string in list_of_strings:
+        total = total + len(string)
+    return total
+
+print(total_length(['foo', 'bar']))
+
+
+#substring of string 
+
+def is_substring(substring, string):
+    index = 0
+    while index < len(string):
+        if string[index : index + len(substring)] == substring:
+            return True
+        index += 1
+    return False
+
+
+
+def count_substring(string, target):
+    total = 0
+    index = 0
+    while index < len(string):
+        if string[index : index + len(target)] == target:
+            total += 1
+            index += len(target)   # <- This is the key line
+        else:
+            index += 1
+    return total
+
+count_substring('aaakkdkaaakjaaa', 'aa')
+
+
+
+def locate_first(string, sub): 
+    index = 0
+    while index < len(string):
+        if string[index : index + len(sub)] == sub:
+            return index
+        else:
+            index += 1
+    return -1
+locate_first('ook', 'cookbook') # 1 
+
+
+def locate_all(string, sub):
+    matches = []
+    index = 0
+    while index < len(string):
+        if string[index : index + len(sub)] == sub:
+            matches.append(index)
+            index += len(sub)
+        else:
+            index += 1
+    return matches
+
+locate_all('cookbook', 'ook')  # [1, 5]
+
+
+#list overlap print unique values from both lists 
+
+a = [1, 1, 2,2,2,2,2,2,2, 3, 5, 8, 13, 21, 34, 55, 89]
+b = [1, 2, 3, 4,5,5,5,5,5,5, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+c=[]
+for i in b:
+  if i in a and i not in c:
+    c.append(i)
+    print(c)
+
+#==== list comprehensions solution 
+
+import random
+a = random.sample(range(1,30), 12)
+b = random.sample(range(1,30), 16)
+result_overlaps = [i for i in set(a) if i in b]
+result = [i for i in result_overlaps if result_overlaps.count(i) == 1]
+
+
+#check number is prime 
+
+def is_prime(number):
+    '''Returns True for prime numbers, False otherwise'''
+    #Edge Cases
+    if number == 1:
+        prime = False
+    elif number == 2:
+        prime = True
+    #All other primes    
+    else:
+        prime = True
+        for check_number in range(2, (number / 2)+1):
+            if number % check_number == 0:
+                prime = False
+                break
+    return prime
+
+is_prime(7)    
+# list comprehension solution 
+
+num = int(input('Insert a number: '))
+a = [x for x in range(2, num) if num % x == 0]
+
+def isit_prime(n):
+    if num > 1:
+        if len(a) == 0:
+            print ('prime')
+        else:
+            print ('NOT prime')
+    else:
+        print ('NOT prime')
+    
+isit_prime(num)
+
+
